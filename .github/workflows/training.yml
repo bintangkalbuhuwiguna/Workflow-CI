@@ -15,17 +15,18 @@ jobs:
       - name: Checkout Repository
         uses: actions/checkout@v4
 
-      - name: Setup Python
-        uses: actions/setup-python@v5
+      - name: Setup Miniconda
+        uses: conda-incubator/setup-miniconda@v3
         with:
-          python-version: "3.12"
+          auto-activate-base: true
+          python-version: 3.10
 
       - name: Install MLflow
         run: pip install mlflow
 
       - name: Run MLflow Project
         run: |
-          mlflow run MLProject --no-conda
+          mlflow run MLProject
 
       - name: Upload Artifact
         uses: actions/upload-artifact@v4
